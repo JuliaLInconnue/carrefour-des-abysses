@@ -665,18 +665,15 @@ init python:
     # so we don't have to call both .image and .unlock. We also apply a
     # transform to the first image.
     g.button("decors")
-    g.image("fond hdi 3.1.png")
-    g.image("fonddroite.png")
-    g.image("fonddroite2.png")
-    g.image("Projecteur/projecteur1.png")
-    g.image("Projecteur/projecteur2.webm")
-    g.image("fondreboot.png")
-    g.image("video/fondanim.webm")
-    g.image("Void_room.png")
-    g.image("fondtranscendental.png")
-    g.image("video/Fond_trans.webm")
-    g.image("fond ecole fake.png")
-    g.image("fond reboot fake.png")
+    g.unlock_image("fond ecole")
+    g.unlock_image("fond droite")
+    g.unlock_image("fonddroite2")
+    g.unlock_image("projecteur1")
+    g.unlock_image("fond reboot")
+    g.unlock_image("fond Void_room")
+    g.unlock_image("fond trans")
+    g.unlock_image("fond ecole fake")
+    g.unlock_image("fond reboot fake")
 
     g.button("personnages")
     g.unlock_image("ju splain")
@@ -686,7 +683,7 @@ init python:
     g.unlock_image("ju plexe")
     g.unlock_image("ju plexe_T")
     g.unlock_image("ju plexe_C")
-    g.image("unknown/juplexe_C2.png")
+    g.image("ju plexe_C2")
     g.unlock_image("ju sad")
     g.unlock_image("ju sad_T")
     g.unlock_image("ju re")
@@ -699,11 +696,11 @@ init python:
     g.unlock_image("juposteur fhappy")
 
     g.button("memes")
-    g.image("Logo2.png")
-    g.image("Fichier source/buff vap.png")
+    g.unlock_image("Logo2")
+    g.image("buff vap")
 
     g.button("cutscenes")
-    g.image("Unfinished.png")
+    g.image("Unfinished")
 
     # This button has a condition associated with it, allowing the game
     # to choose which images unlock.
@@ -763,7 +760,7 @@ screen galerie:
     tag menu
 
     # The background.
-    add "Void_room"
+    add "fond Void_room"
     style_prefix "about"
 
     # A grid of buttons.
@@ -775,11 +772,11 @@ screen galerie:
         yfill True
 
         # Call make_button to show a particular button.
-        add g.make_button("decors", "gallerie/underground.png", xalign=0.5, yalign=0.5)
-        add g.make_button("personnages", "gallerie/Edwin.png", xalign=0.5, yalign=0.5)
+        add g.make_button("decors", "UI/galerie/underground.png", xalign=0.5, yalign=0.5)
+        add g.make_button("personnages", "UI/galerie/Edwin.png", xalign=0.5, yalign=0.5)
 
-        add g.make_button("memes", "gallerie/klarpear.png", xalign=0.5, yalign=0.5)
-        add g.make_button("cutscenes", "gallerie/cutscene.png", xalign=0.5, yalign=0.5)
+        add g.make_button("memes", "UI/galerie/klarpear.png", xalign=0.5, yalign=0.5)
+        add g.make_button("cutscenes", "UI/galerie/cutscene.png", xalign=0.5, yalign=0.5)
 
 
     # The screen is responsible for returning to the main menu. It could also
@@ -794,8 +791,8 @@ screen galerie:
 
 screen mainUI:
     imagemap:
-       ground "main_UI.png"
-       hotspot (149, 790, 194, 214) action Jump("menu_game")
+       ground "main_UI"
+       hotspot (149, 790, 194, 214) action [Jump("aventure"), Hide (screen = None), Hide (screen= "inventory")]
        hotspot (612, 785, 239, 208) action Jump("menu1")
        hotspot (1140, 782, 233, 219) action Jump("menu111face")
        hotspot (1542, 815, 257, 189) action Jump("menu2")
@@ -803,15 +800,102 @@ screen mainUI:
 
 screen whiteUI:
     imagemap:
-       ground "other_UI.png"
+       ground "other_UI"
        hotspot (612, 785, 239, 208) action Jump("inverted1")
        hotspot (1140, 782, 233, 219) action Jump("whiteexit")
 
 screen blackUI:
     imagemap:
-       ground "other_UI.png"
+       ground "other_UI"
        hotspot (612, 785, 239, 208) action Jump("offlinemenu1")
        hotspot (1140, 782, 233, 219) action Jump("blackexit")
+
+#aventure
+
+screen aventure:
+    add "Miclordes_trans"
+    add "Miclordes"
+    add "aventure_annexe"
+
+    imagebutton auto "aventureprincipale %s":
+     xpos 0.05
+     ypos 0.05
+     action [ToggleScreen("aventure_P"), Hide (screen = None), Play("music", "audio/A day in the unknown.ogg", loop=True, fadein=3)]
+    frame : 
+     xalign 0.5
+     yalign 0.95
+     textbutton _("Retour") action [Play("music", "audio/A day in the unknown.ogg", loop=True, fadein=3), Jump ("menu0")]
+
+screen aventure_P:
+    add "Aventure HP"
+
+    viewport:
+        scrollbars "horizontal"
+        spacing 5
+        mousewheel True
+        draggable True
+        #area (0, 70, 1920, 1000)
+        xpos 720 #à supprimer quand il y en aura plusieurs
+
+        side_yfill True
+
+
+        imagebutton auto "Aventure_P %s":
+         xpos 360
+         ypos 0
+         action [ToggleScreen("pacrel"), Hide (screen = None)]
+        if joaearly:
+             imagebutton auto "Aventure_LJDV %s":
+                 xpos 900
+                 ypos 0
+                 action [ToggleScreen("LJDV"), Hide (screen = None)]
+    frame : 
+     xalign 0.5
+     yalign 0.95
+     textbutton _("Retour") action [ToggleScreen ("aventure"), Hide (screen = None), Play("music", "audio/Miclordes.ogg", loop=True, fadein=3)]
+
+
+
+screen pacrel:
+    style_prefix "aventurep"
+    add "Aventure_fond pacrel" 
+    
+    vbox:
+        xalign 0.1
+        yalign 0.5
+        textbutton _("Prologue") action [Jump("prologue_pacrel"), Hide (screen = None)]
+        #if persistent.p0:
+         #textbutton _("Chapitre 1") action [Jump("Ch1_pacrel"), Hide (screen = None)]
+        textbutton _("Retour") action [ToggleScreen ("aventure_P"), Hide (screen = None)]
+
+    python:
+     style.aventurep = Style(style.default)
+     style.aventurep_button.background = None
+     style.aventurep_button_text.color = "#ffffff"
+     style.aventurep_button_text.hover_color = "#919090ff"
+     style.aventurep_button_text.selected_color = "#d6d6d6"
+     style.aventurep_button_text.size = 80
+
+screen LJDV:
+    style_prefix "aventurej"
+    add "Aventure_fond LJDV" 
+    
+    vbox:
+        xalign 0.1
+        yalign 0.5
+        textbutton _("Prologue") action [Jump("prologue_LJDV"), Hide (screen = None)]
+        textbutton _("Chapitre 1") action [Jump("Ch1_LJDV"), Hide (screen = None)]
+        textbutton _("Retour") action [ToggleScreen ("aventure_P"), Hide (screen = None)]
+
+    python:
+     style.aventurej = Style(style.default)
+     style.aventurej_button.background = None
+     style.aventurej_button_text.color = "#ff0000"
+     style.aventurej_button_text.hover_color = "#ff9100ff"
+     style.aventurej_button_text.selected_color = "#d4ff00"
+     style.aventurej_button_text.size = 80
+
+    
 
 # Inventaire
 
@@ -822,7 +906,7 @@ screen inventory:
         xalign 0.01
         yalign 0.02
 
-        imagebutton auto "inventory %s.png":
+        imagebutton auto "inventory %s":
          xpos 0.01
          ypos 0.02
          action ToggleScreen("inventory_item_description")
@@ -844,8 +928,9 @@ style inv_button_text:
 screen inventory_item_description:
     # use this based on your preference
     # modal True
+    add "Inventaire"
     window:
-        background "#cfcfcfff"
+        background "#cfcfcf00"
         xsize 600
         ysize 150
         xalign 0.5
@@ -855,11 +940,12 @@ screen inventory_item_description:
             yfill True
 
     window:
-        background "#6c6ca599"
+        background "#cfcfcf00"
         xsize 1290
         ysize 600
         xalign 0.5
         yalign 0.7
+        
         hbox:
             box_wrap True
             box_wrap_spacing 10
@@ -869,8 +955,8 @@ screen inventory_item_description:
             style_prefix "inv"
             for item in inventory_items:
                 imagebutton:
-                    idle (item + " idle.png")
-                    hover (item + " hover.png")
+                    idle ("UI/" + item + " idle.png")
+                    hover ("UI/" +item + " hover.png")
                     action SetVariable("item_description", item_descriptions.get(item))
                     selected False
 
@@ -880,8 +966,8 @@ screen inventory_item_description:
 
 init python:  
   clickcount = 0
-  requiredclicks = 10
-  timelimit = 5
+  requiredclicks = 20
+  timelimit = 60
 
   def addclick():
     if store.clickcount < store.requiredclicks:
@@ -892,6 +978,7 @@ init python:
         
 
 screen quicktimebarwhite():
+
   frame:
     background None
     xpos 640
@@ -904,12 +991,12 @@ screen quicktimebarwhite():
         textbutton _("{color=#FF0000}{size=50}Résister au vide"):
             action Function(store.addclick)
     
-    timer store.timelimit action Function(renpy.jump,'finwhite')
+    timer store.timelimit action [Jump ('finwhite'), PauseAudio(channel='music', value=True)]
 
 init python:  
   clickcountedmes = 0
-  requiredclicksedmes = 50
-  timelimitedmes = 20
+  requiredclicksedmes = 150
+  timelimitedmes = 60
 
   def addclick2():
     if store.clickcountedmes < store.requiredclicksedmes:
@@ -919,6 +1006,7 @@ init python:
         renpy.jump("timeskip")
 
 screen quicktimebaredmes():
+
   frame:
     background None
     xpos 640
@@ -931,13 +1019,13 @@ screen quicktimebaredmes():
         textbutton _("{color=#FF0000}{size=50}Tends le bras !"):
             action Function(store.addclick2)
     
-    timer store.timelimitedmes action Function(renpy.jump,'finEdmes')
+    timer store.timelimitedmes action [Jump('finEdmes'), PauseAudio(channel='music', value=True)]
 
 #directions main hub
 
 screen directionsF:
     imagemap:
-       ground "Directions.png"
+       ground "Directions"
        hotspot (7, 312, 418, 314) action Jump("menu111gauche")
        hotspot (1504, 308, 412, 313) action Jump("menu111droite")
        hotspot (694, 830, 444, 242) action Jump("menu0")
@@ -952,26 +1040,26 @@ screen directionsF:
 
 screen directionsFbis:
     imagemap:
-       ground "none.png"
+       ground "none"
        hotspot (500, 408, 102, 43) action Jump("menu0")       
 
 screen directionsD:
     imagemap:
-       ground "Directions.png"
+       ground "Directions"
        hotspot (7, 312, 418, 314) action Jump("menu111face")
        hotspot (1504, 308, 412, 313) action Jump("menu111arriere")
        hotspot (694, 830, 444, 242) action Jump("menu0")
 
 screen directionsG:
     imagemap:
-       ground "Directions.png"
+       ground "Directions"
        hotspot (7, 312, 418, 314) action Jump("menu111arriere")
        hotspot (1504, 308, 412, 313) action Jump("menu111face")
        hotspot (694, 830, 444, 242) action Jump("menu0")
 
 screen directionsB:
     imagemap:
-       ground "Directions.png"
+       ground "Directions"
        hotspot (7, 312, 418, 314) action Jump("menu111droite")
        hotspot (1504, 308, 412, 313) action Jump("menu111gauche")
        hotspot (694, 830, 444, 242) action Jump("menu0")
@@ -980,7 +1068,7 @@ screen directionsB:
 
 screen Arret_urgence:
     imagemap:
-       ground "BAU.png"
+       ground "BAU"
        hotspot (811, 438, 216, 219) action Jump("menu111bouton")
 
 # screen avant main hub
@@ -998,7 +1086,7 @@ screen OFAC1():
     frame:
      xsize 1400 # Width of your frame
      ysize 1080 # Height of your frame
-     background "Rapport_OFAC.png" #Assuming it is located in the images folder.
+     background "Rapport_OFAC" #Assuming it is located in the images folder.
      style_prefix "about"
      vbox:
          xpos 200 # offset on the x axis
@@ -1827,18 +1915,6 @@ style notify_frame:
 
 style notify_text:
     properties gui.text_properties("notify")
-
-screen fldroite:
-    imagebutton:
-        align (1.0, 0.5)
-        auto droite
-        action Jump (arriere)
-             
-screen flgauche:
-    imagebutton:
-        align (0.0, 0.5)
-        auto gauche
-        action Jump (arriere)
 
 ## Écran NVL ###################################################################
 ##

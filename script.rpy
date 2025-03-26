@@ -49,10 +49,10 @@ init:
             move = Shaker(start, child, dist=dist)
         
             return renpy.display.layout.Motion(move,
-                          time,
-                          child,
-                          add_sizes=True,
-                          **properties)
+                time,
+                child,
+                add_sizes=True,
+                **properties)
 
         Shake = renpy.curry(_Shake)
     #
@@ -61,322 +61,250 @@ init:
     transform flip:
         yzoom -1.0
 
-# Déclarez sous cette ligne les images, avec l'instruction 'image'
-# ex: image eileen heureuse = "eileen_heureuse.png"
-$ Halloween = Event (31, 10, True)
-
-image white = Solid("#ffffff")
-image directions = "Directions.png"
-image anifond = Movie(play="images/video/fondanim.webm")
-image anifond 2 = Movie(play="images/video/Fond_trans.webm")
-image projecteur2 = Movie(play="images/Projecteur/projecteur2.webm")
-image projecteur1 = "Projecteur/projecteur1.png"
-image Void_room = 'Void_room.png'
-image cadenasT = "cadenas.png" 
-image cadenasL = "cadenas.png" 
-image cadenasR = "cadenas.png" 
-image chaine = "chaine.png"
-image fond droite = "fonddroite.png"
-image fonddroite2 = "fonddroite2.png"
-image fond gauche = "fondgauche.png"
-image fond reboot = "fondreboot.png"
-image I_Know = "I_Know.jpg"
-image YOU = "YOU.jpg"
-#init python:
-  #if Halloween:
-    #image ju splain = "ju ink.png"
-image ju splain = "unknown/jusplain.png"
-image ju splain_T = "unknown/jusplain_T.png"
-image ju plexe = "unknown/juplexe.png"
-image ju plexe_T = "unknown/juplexe_T.png"
-image ju plexe_C = "unknown/juplexe_C.png"
-image ju fear = "unknown/fear.png"
-image ju fear_T = "unknown/fear_T.png"
-image ju ink = "unknown/juink.png"
-image ju ink_T = "unknown/juink_T.png"
-image ju re = "unknown/jure.png"
-image ju re_T = "unknown/jure_T.png"
-image ju wu = "unknown/juwu.png"
-image ju wu_T = "unknown/juwu_T.png"
-image ju sad = "unknown/jusad.png"
-image ju sad_T = "unknown/jusad_T.png"
-image juposteur fhappy = "Juposteur/juposteur joie crame.png"
-image juposteur happy = "Juposteur/juposteur joie.png"
-image Edmes closeup = "Edmes closeup.png"
-image fond ecole = "fond hdi 3.1.png"
-image logo2 = "logo2.png"
-image logo = "logo_2.png"
-image linconnue = "l'inconnue pdp.png"
-image orga = "orga_crea.png"
-image Main_UI = "main_UI.png"
-image fond trans = "fondtranscendental.png"
-image fond ecole fake = "fond ecole fake.png"
-image fond reboot fake = "fond reboot fake.png"
-
-# Déclarez les personnages utilisés dans le jeu.
-#personnages
-define I = Character('L\'Inconnue', color="#0006be")
-define IIG = Character('L\'Inconnu - Ink Guy', color="#00023f")
-define p = Character("[name]", color="#3f3f3f")
-define A = Character("Th3_4rch1v1st", color="#3f3f3f")
-define HUH = Character("???", color="#111111")
-define Edmes = Character("???", color="#111111")
-
-#variables et codes
-
-define code = '31122034'
-
-default droite = False
-default gauche = False
-default off = False
-default visite = False
-default oob = False
-default puni = False
-default corrupt = False
-default conseil = 0
-default inconnu = 0
-default integrité = 0
-default player = os.environ.get('username')
-default inverted = False
-default Inconnu = False
-
 #phrase d'intro
 
-define fun = renpy.random.randint(1,40) 
+define fun = renpy.random.randint(1,41) 
 default projecteur = 1
 
-# Le jeu commence ici
+# Ecran précédant le menu principal
 label splashscreen:
-   play music "audio/Weirdness ensues.ogg"
-   scene black
-   call screen screen_language 
-   with Pause (1)
-   if fun==1:
-     show logo2 at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
-     with Pause (0.5)
-     hide logo2 with dissolve
-     with Pause (0.5)
-   else:
-     show logo at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
-     with Pause (0.5)
-     hide logo with dissolve
-     with Pause (0.5)
+  play music "audio/Weirdness ensues.ogg"
+  scene black
+  call screen screen_language 
+  with Pause (1)
+  if fun==1:
+    show logo2 at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
+    with Pause (0.5)
+    hide logo2 with dissolve
+    with Pause (0.5)
+  else:
+    show logo at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
+    with Pause (0.5)
+    hide logo with dissolve
+    with Pause (0.5)
 
-   show text _("{color=#ffffff}Un jeu de Julia L'Inconnue (ft charasime)") at Position(xpos=0.5,xanchor=0.5,ypos=0.9,yanchor=0.9) with dissolve
-   show linconnue at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
-   with Pause (1)
-   hide text with dissolve
-   hide linconnue with dissolve
-   with Pause (0.5)
+  show text _("{color=#ffffff}Un jeu de Julia L'Inconnue (ft charasime)") at Position(xpos=0.5,xanchor=0.5,ypos=0.9,yanchor=0.9) with dissolve
+  show linconnue at Position(xpos=0.5,xanchor=0.5,ypos=0.5,yanchor=0.5,) with dissolve
+  with Pause (1)
+  hide text with dissolve
+  hide linconnue with dissolve
+  with Pause (0.5)
 
-   if fun >= 2:
-     show text "{color=#ffffff}CW : Disturbing imagery and themes" with dissolve
-   else:
-     show text "CW : no bitches :("
-   with Pause (5)
-   hide text with dissolve
-   with Pause (1)
- #texte d'intro
-   if fun == 1:
-     show text "{color=#ffffff}You got absolutely no bitches" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Not a single maiden" at Position (ypos=0.6) as text2
-     $ Achievement.add(achievement_name['nobitches'])
-   elif fun == 2:
-     show text "{color=#ffffff}Top text" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Bottom text" at Position (ypos=0.6) as text2
-   elif fun == 3:
-     show text "{color=#ffffff}Un principe de texte d'intro" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}honteusement dérobé à la funkin team" at Position (ypos=0.6) as text2
-   elif fun == 4:
-     show text "{color=#ffffff}Tu as détruit ton monde." at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Nous ne pouvons pas te laisser impuni." at Position (ypos=0.6) as text2
-   elif fun == 5:
-     show text "{color=#ffffff}The grievous lady may not have a face" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}but she sees everything" at Position (ypos=0.6) as text2
-   elif fun == 6:
-     show text "{color=#ffffff}Crazy?" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}I was crazy once !" at Position (ypos=0.6) as text2
-   elif fun == 7:
-     show text "{color=#ffffff}Si ce jeu sort un jour," at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}je pense que pas grand monde l'aimera" at Position (ypos=0.6) as text2
-   elif fun == 8:
-     show text "{color=#ffffff}La perfection n'est pas atteignable" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}mais Charasime a un cheat code" at Position (ypos=0.6) as text2
-   elif fun == 9:
-     show text "{color=#ffffff}J'ai peur et j'ai froid..." at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}La solitude me dévaste..." at Position (ypos=0.6) as text2
-   elif fun == 10:
-     show text "{color=#ffffff}Si il n'est pas suffisant," at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}nous reprendrons la main" at Position (ypos=0.6) as text2
-   elif fun == 11:
-     show text "{color=#ffffff}La malveillance est max" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}mais le skill est min" at Position (ypos=0.6) as text2
-   elif fun == 12:
-     show text "{color=#ffffff}Entre l'antagoniste et l'écrivain," at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}qui est vraiment responsable de la fin du monde?" at Position (ypos=0.6) as text2
-   elif fun == 13:
-     show text '{color=#ffffff} \"Non désolée :emoji_décu_pointant_le_ciel:\"" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}- LaJoieDeVivre' at Position (ypos=0.6) as text2
-   elif fun == 14:
-     show text "{color=#ffffff}La raclette va au four" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}et les couverts dans le micro-ondes" at Position (ypos=0.6) as text2
-   elif fun == 15:
-     show text "{color=#ffffff}Ce splash screen" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}m'as pris beaucoup trop de temps" at Position (ypos=0.6) as text2
-   elif fun == 16:
-     show text "{color=#ffffff}Des fois" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}je pense" at Position (ypos=0.6) as text2
-   elif fun == 17:
-     show text "{color=#ffffff}Stop posting about Among Us" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}I'm tired of seeing it" at Position (ypos=0.6) as text2
-   elif fun == 18:
-     show text "{color=#ffffff}Kasane Teto supremacy" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}luv her" at Position (ypos=0.6) as text2
-   elif fun == 19:
-     show text "{color=#ffffff}hey guys" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}did you know that in term of..." at Position (ypos=0.6) as text2
-   elif fun == 20:
-     show text "{color=#ffffff}Edmes a beau avoir formatté à tour de bras," at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}il n'a jamais tué personne." at Position (ypos=0.6) as text2
-   elif fun == 21:
-     show text "{color=#ffffff}Mieux que Garten of BanBan" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}depuis l'old alpha 1.0" at Position (ypos=0.6) as text2
-   elif fun == 22:
-     show text "{color=#ffffff}We are so back" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}We are getting this game" at Position (ypos=0.6) as text2
-   elif fun == 23:
-     show text "{color=#ffffff}Soutien à Meurice" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Un humour à défendre" at Position (ypos=0.6) as text2
-   elif fun == 24:
-     show text "{color=#ffffff}Attention aux rhinocéros" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Ils se propagent vite ces cons" at Position (ypos=0.6) as text2
-   elif fun == 25:
-     show text "{color=#ffffff}I like thigh highs" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}especially when I'm wearing them" at Position (ypos=0.6) as text2
-   elif fun == 26:
-     show text "{color=#ffffff}Tout est politique" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Même dire l'inverse" at Position (ypos=0.6) as text2
-   elif fun == 27:
-     show text "{color=#ffffff}Faire tout brûler" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}faire tout péter" at Position (ypos=0.6) as text2
-   elif fun == 28:
-     show text "{color=#ffffff}Oh Elisabeth" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}You're Borne to be my lover" at Position (ypos=0.6) as text2
-   elif fun == 29:
-     show text "{color=#ffffff}I'll make you say" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}How proud you are of me" at Position (ypos=0.6) as text2
-   elif fun == 30:
-     show text "{color=#ffffff}MGED en bikini" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Charasime ravie" at Position (ypos=0.6) as text2
-   elif fun == 31:
-     show text "{color=#ffffff}Bourré, Jules écrit" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}tout son code en une ligne" at Position (ypos=0.6) as text2
-   elif fun == 32:
-     show text "{color=#ffffff}Faites des poutous" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Votou Poutou" at Position (ypos=0.6) as text2
-   elif fun == 33:
-     show text "{color=#ffffff}Une biologiste dessinatrice ? Et puis quoi encore ?" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Une biologiste programmeuse ?" at Position (ypos=0.6) as text2
-   elif fun == 34 :
-     show text "{color=#ffffff}Notre accord avec ce dieu sera grandiose !" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Qu'est ce qui pourrait mal se passer ?" at Position (ypos=0.6) as text2
-   elif fun == 35 :
-     show text "{color=#ffffff}Les GB dominent le monde" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Et les EIPI dominent le shitpost" at Position (ypos=0.6) as text2
-   elif fun == 36 :
-     show text "{color=#ffffff}All the single furries" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}All the singles furries" at Position (ypos=0.6) as text2
-   elif fun == 37 :
-     show text "{color=#ffffff}Shikanoko nokonoko" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}Koshitantan" at Position (ypos=0.6) as text2
-   elif fun == 38 :
-     show text "{color=#ffffff}Typhlosion" at Position (ypos=0.2) as text1
-     pause 0.5
-     show text "{color=#ffffff}Vaporeon" at Position (ypos=0.4) as text2
-     pause 0.5
-     show text "{color=#ffffff}Gardevoire" at Position (ypos=0.6) as text3
-   elif fun == 39 :
-     show text "{color=#ffffff}Imagine prendre plus de 8 semaines à comprendre" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}comment faire fonctionner la présentation de texte correctement" at Position (ypos=0.6) as text2
-   elif fun == 40 :
-     show text "{color=#ffffff}Ce jeu contient une grande quantité de" at Position (ypos=0.4) as text1
-     pause 1.0
-     show text "{color=#ffffff}fun" at Position (ypos=0.6) as text2
-     pause 0.95
-     show text "{color=#ffffff}fun" at Position (ypos=0.625,xpos=0.525) as text25
-     pause 0.9
-     show text "{color=#ffffff}fun" at Position (ypos=0.65,xpos=0.55) as text3
-     pause 0.85
-     show text "{color=#ffffff}fun" at Position (ypos=0.675,xpos=0.575) as text35
-     pause 0.8
-     show text "{color=#ffffff}fun" at Position (ypos=0.7,xpos=0.6) as text4
-     pause 0.75
-     show text "{color=#ffffff}fun" at Position (ypos=0.725,xpos=0.625) as text45
-     pause 0.7
-     show text "{color=#ffffff}fun" at Position (ypos=0.75,xpos=0.65) as text5
-     pause 0.65
-     show text "{color=#ffffff}fun" at Position (ypos=0.775,xpos=0.675) as text55
-     pause 0.6
-     show text "{color=#ffffff}fun" at Position (ypos=0.8,xpos=0.7) as text6
-     pause 0.55
-     show text "{color=#ffffff}fun" at Position (ypos=0.825,xpos=0.725) as text65
-     pause 0.5
-     show text "{color=#ffffff}fun" at Position (ypos=0.85,xpos=0.75) as text7
-     pause 0.45
-     show text "{color=#ffffff}fun" at Position (ypos=0.875,xpos=0.775) as text75
-     pause 0.4
-     show text "{color=#ffffff}fun" at Position (ypos=0.9,xpos=0.8) as text8
-     pause 0.35
-     show text "{color=#ffffff}fun" at Position (ypos=0.925,xpos=0.825) as text85
-     pause 0.3
-     show text "{color=#ffffff}fun" at Position (ypos=0.95,xpos=0.85) as text9
-     pause 0.25
-     show text "{color=#ffffff}fun" at Position (ypos=0.975,xpos=0.875) as text95
-     pause 0.2
-     show text "{color=#ffffff}fun" at Position (ypos=1,xpos=0.9) as text10
-     $ Achievement.add(achievement_name['fnaf 6'])
-   with Pause (1)
-   hide text
-   return
+  if fun >= 2:
+    show text "{color=#ffffff}CW : Disturbing imagery and themes" with dissolve
+  else:
+    show text "CW : no bitches :("
+  with Pause (5)
+  hide text with dissolve
+  with Pause (1)
+  #texte d'intro
+  if fun == 1:
+    show text "{color=#ffffff}You got absolutely no bitches" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Not a single maiden" at Position (ypos=0.6) as text2
+    $ Achievement.add(achievement_name['nobitches'])
+  elif fun == 2:
+    show text "{color=#ffffff}Top text" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Bottom text" at Position (ypos=0.6) as text2
+  elif fun == 3:
+    show text _("{color=#ffffff}Un principe de texte d'intro") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}honteusement dérobé à la funkin team") at Position (ypos=0.6) as text2
+  elif fun == 4:
+    show text _("{color=#ffffff}Tu as détruit ton monde.") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Nous ne pouvons pas te laisser impuni.") at Position (ypos=0.6) as text2
+  elif fun == 5:
+    show text "{color=#ffffff}The grievous lady may not have a face" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}but she sees everything" at Position (ypos=0.6) as text2
+  elif fun == 6:
+    show text "{color=#ffffff}Crazy?" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}I was crazy once !" at Position (ypos=0.6) as text2
+  elif fun == 7:
+    show text _("{color=#ffffff}Si ce jeu est fini un jour,") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}je pense que pas grand monde y jouera") at Position (ypos=0.6) as text2
+  elif fun == 8:
+    show text _("{color=#ffffff}La perfection n'est pas atteignable") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}mais Charasime a un cheat code") at Position (ypos=0.6) as text2
+  elif fun == 9:
+    show text _("{color=#ffffff}J'ai peur et j'ai froid...") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}La solitude me dévaste...") at Position (ypos=0.6) as text2
+  elif fun == 10:
+    show text _("{color=#ffffff}Si il n'est pas satisfaisant pour nos attentes,") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}nous reprendrons la main") at Position (ypos=0.6) as text2
+  elif fun == 11:
+    show text _("{color=#ffffff}La malveillance est max") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}mais le skill est min") at Position (ypos=0.6) as text2
+  elif fun == 12:
+    show text _("{color=#ffffff}Entre l'antagoniste et l'écrivain,") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}qui est vraiment responsable de la fin du monde?") at Position (ypos=0.6) as text2
+  elif fun == 13:
+    show text '{color=#ffffff} \"Non désolée :emoji_décu_pointant_le_ciel:\"' at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}- LaJoieDeVivre" at Position (ypos=0.6) as text2
+  elif fun == 14:
+    show text _("{color=#ffffff}La raclette va au placard à couvert") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}et les couverts dans le four à micro-ondes") at Position (ypos=0.6) as text2
+  elif fun == 15:
+    show text _("{color=#ffffff}Ce splash screen") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}m'as pris beaucoup trop de temps") at Position (ypos=0.6) as text2
+  elif fun == 16:
+    show text _("{color=#ffffff}Des fois") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}je pense") at Position (ypos=0.6) as text2
+  elif fun == 17:
+    show text "{color=#ffffff}Stop posting about Among Us" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}I'm tired of seeing it" at Position (ypos=0.6) as text2
+  elif fun == 18:
+    show text "{color=#ffffff}Kasane Teto supremacy" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Pearto mass destruction weapon" at Position (ypos=0.6) as text2
+  elif fun == 19:
+    show text "{color=#ffffff}hey guys" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}did you know that in term of male human and fem-" at Position (ypos=0.6) as text2
+  elif fun == 20:
+    show text _("{color=#ffffff}Edmes a beau avoir formatté à tour de bras,") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}il n'a jamais tué personne.") at Position (ypos=0.6) as text2
+  elif fun == 21:
+    show text _("{color=#ffffff}Mieux que Garten of BanBan") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}depuis l'old alpha 1.0") at Position (ypos=0.6) as text2
+  elif fun == 22:
+    show text "{color=#ffffff}We are so back" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}We are getting this game" at Position (ypos=0.6) as text2
+  elif fun == 23:
+    show text "{color=#ffffff}Soutien à Meurice" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Un humour à défendre" at Position (ypos=0.6) as text2
+  elif fun == 24:
+    show text _("{color=#ffffff}Attention aux rhinocéros") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Ils se propagent vite ces cons") at Position (ypos=0.6) as text2
+  elif fun == 25:
+    show text "{color=#ffffff}I like thigh highs" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}especially when I'm wearing them" at Position (ypos=0.6) as text2
+  elif fun == 26:
+    show text _("{color=#ffffff}Tout est politique") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Même dire l'inverse") at Position (ypos=0.6) as text2
+  elif fun == 27:
+    show text _("{color=#ffffff}Faire tout brûler") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}faire tout péter") at Position (ypos=0.6) as text2
+  elif fun == 28:
+    show text _("{color=#ffffff}Méééé euh... puisque je vous dis que je savais pas") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}C'est pas ma faute si à Betharram y avait des enfants et des prêtres.") at Position (ypos=0.6) as text2
+  elif fun == 29:
+    show text "{color=#ffffff}I'll make you say" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}How proud you are of me" at Position (ypos=0.6) as text2
+  elif fun == 30:
+    show text _("{color=#ffffff}MGED en bikini") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Charasime ravie et Joa terrifiée") at Position (ypos=0.6) as text2
+  elif fun == 31:
+    show text _("{color=#ffffff}Bourré, Jules écrit") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}tout son code en une ligne") at Position (ypos=0.6) as text2
+  elif fun == 32:
+    show text _("{color=#ffffff}Faites des poutous") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Votou Poutez") at Position (ypos=0.6) as text2
+  elif fun == 33:
+    show text _("{color=#ffffff}Une biologiste dessinatrice ? Et puis quoi encore ?") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Une biologiste programmeuse ?") at Position (ypos=0.6) as text2
+  elif fun == 34 :
+    show text _("{color=#ffffff}Notre accord avec ce dieu sera grandiose !") at Position (ypos=0.4) as text1
+    pause 1.0
+    show text _("{color=#ffffff}Qu'est ce qui pourrait mal se passer ?") at Position (ypos=0.6) as text2
+  elif fun == 35 :
+    show text "{color=#ffffff}Les GB dominent le monde" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Et les EIPI dominent le shitpost" at Position (ypos=0.6) as text2
+  elif fun == 36 :
+    show text "{color=#ffffff}All the single furries" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}All the singles furries" at Position (ypos=0.6) as text2
+  elif fun == 37 :
+    show text "{color=#ffffff}Shikanoko nokonoko" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}Koshitantan" at Position (ypos=0.6) as text2
+  elif fun == 38 :
+    show text "{color=#ffffff}Typhlosion" at Position (ypos=0.2) as text1
+    pause 0.5
+    show text "{color=#ffffff}Vaporeon" at Position (ypos=0.4) as text2
+    pause 0.5
+    show text "{color=#ffffff}Gardevoire" at Position (ypos=0.6) as text3
+  elif fun == 39 :
+    show text "{color=#ffffff}Imagine prendre plus de 8 semaines à comprendre" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}comment faire fonctionner la présentation de texte correctement" at Position (ypos=0.6) as text2
+  elif fun == 40 :
+    show text "{color=#ffffff}Ce jeu contient une grande quantité de" at Position (ypos=0.4) as text1
+    pause 1.0
+    show text "{color=#ffffff}fun" at Position (ypos=0.6) as text2
+    pause 0.95
+    show text "{color=#ffffff}fun" at Position (ypos=0.625,xpos=0.525) as text25
+    pause 0.9
+    show text "{color=#ffffff}fun" at Position (ypos=0.65,xpos=0.55) as text3
+    pause 0.85
+    show text "{color=#ffffff}fun" at Position (ypos=0.675,xpos=0.575) as text35
+    pause 0.8
+    show text "{color=#ffffff}fun" at Position (ypos=0.7,xpos=0.6) as text4
+    pause 0.75
+    show text "{color=#ffffff}fun" at Position (ypos=0.725,xpos=0.625) as text45
+    pause 0.7
+    show text "{color=#ffffff}fun" at Position (ypos=0.75,xpos=0.65) as text5
+    pause 0.65
+    show text "{color=#ffffff}fun" at Position (ypos=0.775,xpos=0.675) as text55
+    pause 0.6
+    show text "{color=#ffffff}fun" at Position (ypos=0.8,xpos=0.7) as text6
+    pause 0.55
+    show text "{color=#ffffff}fun" at Position (ypos=0.825,xpos=0.725) as text65
+    pause 0.5
+    show text "{color=#ffffff}fun" at Position (ypos=0.85,xpos=0.75) as text7
+    pause 0.45
+    show text "{color=#ffffff}fun" at Position (ypos=0.875,xpos=0.775) as text75
+    pause 0.4
+    show text "{color=#ffffff}fun" at Position (ypos=0.9,xpos=0.8) as text8
+    pause 0.35
+    show text "{color=#ffffff}fun" at Position (ypos=0.925,xpos=0.825) as text85
+    pause 0.3
+    show text "{color=#ffffff}fun" at Position (ypos=0.95,xpos=0.85) as text9
+    pause 0.25
+    show text "{color=#ffffff}fun" at Position (ypos=0.975,xpos=0.875) as text95
+    pause 0.2
+    show text "{color=#ffffff}fun" at Position (ypos=1,xpos=0.9) as text10
+    $ Achievement.add(achievement_name['fnaf 6'])
+  elif fun == 41 :
+    show text "{color=#ffffff}My name is Edwin." at Position (ypos=0.3) as text1
+    pause 1.0
+    show text "{color=#ffffff}I made the mimic." at Position (ypos=0.5) as text2
+    pause 1.0
+    show text "{color=#ffffff}It was difficult to put the pieces together." at Position (ypos=0.7) as text3
+  with Pause (1)
+  hide text
+  return
 
+##introduction / Arc Inconnu
 label start:
     stop music
     python: 
@@ -555,9 +483,12 @@ label menu0:
  hide screen directionsG
  hide screen directionsB
  hide screen directionsF
+ hide screen aventure
  hide fond ecole
  hide ju splain
+ hide image "Miclordes/Miclordes.jpg"
  if inconnu == 8:
+   play music "audio/Dissonant vision.ogg"
    show fond ecole fake
    show anifond behind fond
    p "Qu'est ce qu'il s'est passé ici ? tout allait pourtant..."
@@ -589,6 +520,7 @@ label menu0:
    p "Non, merci, je vais partir très vite, je n'ai pas besoin de tout ça."
    hide juposteur
    show fond reboot fake
+   play music "audio/Heartbeat.ogg"
    call screen quicktimebaredmes()
  else:
    show fond ecole
@@ -693,7 +625,8 @@ label menu1:
        show ju plexe_T
        I "Oui et c'est aussi la cause principale de l'affaire Pacrel."
        show ju plexe
-       $ inconnu = inconnu + 1
+       if inconnu == 5:
+         $ inconnu = inconnu + 1
        jump menu1
      "Qu'est ce que l'affaire Pacrel ?" if inconnu == 6 :
        show ju splain_T
@@ -711,7 +644,8 @@ label menu1:
        I "Et pour la fin de cette affaire, je ne saurais plus vraiment partir en détail."
        show ju splain
        p "Très bien, j'ai compris, je retourne le voir."
-       $ inconnu = inconnu + 1
+       if inconnu == 6:
+         $ inconnu = inconnu + 1
        jump menu1
      "Retour":
        show ju splain_T
@@ -885,6 +819,7 @@ label whiteout:
   hide screen directionsF
   hide screen inventory
   show white with dissolve
+  play music "audio/Void_Seeker.ogg"
   show text _('{color=#000000}Tu as cassé tes menottes, [name]...')
   pause 2.0
   hide text
@@ -901,6 +836,7 @@ label whiteout:
   pause 2.0
   hide text
   pause 1.0
+  play music "audio/Heartbeat.ogg"
   call screen quicktimebarwhite()
   
 label menu111droite:
@@ -914,15 +850,14 @@ label menu111droite:
 
 label menu111gauche:
  $ projecteur = renpy.random.randint(1,2)
- hide screen directionsB
+ show projecteur1 behind fond
+ if projecteur == 2 :
+   show projecteur2 behind fond
+   hide screen directionsB
+ show fond gauche
  hide screen directionsF
  hide screen fenetre
  hide screen Arret_urgence
- show fond gauche
- if projecteur == 1:
-   show projecteur1 behind fond
- elif projecteur == 2 :
-   show projecteur2 behind fond
  call screen directionsG
 
 label menu111arriere:
@@ -937,6 +872,7 @@ label menu111arriere:
  $ ui.interact()
  
 label inverted:
+  play music "audio/Void_Seeker.ogg"
   hide screen to_inverted
   hide white
   show screen inventory
@@ -1026,7 +962,8 @@ label inverted1:
       IIG "Me poser quelle question ?"
       show ju ink
       p "Non, rien ! J'ai pensé.e à voix haute !"
-      $ inconnu = 1
+      if inconnu == 0:
+       $ inconnu = inconnu + 1
       jump inverted1
     "Pourquoi tu souris tout le temps?":
       show ju ink_T
@@ -1127,7 +1064,8 @@ label inverted1:
               IIG "On se reverra, je te le prommets."
               IIG "De toute façon, je ne pourrais pas aller bien plus loin !"
               show ju ink
-              $ inconnu = inconnu + 1
+              if inconnu == 7:
+               $ inconnu = inconnu + 1
               jump whiteexit
             "La perte de couleur":
              p "Je suis ultrasûr."
@@ -1143,15 +1081,16 @@ label inverted1:
           show ju ink
           p "Merde..."
           jump inverted1
-      $ inconnu = inconnu + 1
-      jump inverted1
     "Retour":
       jump inverted05
    
 label whiteexit:
   hide screen whiteUI
+  show ju ink_T
   IIG "Penses juste à venir me revoir ! On se sent seul quand enfermé avec soi-même."
+  show ju ink
   pause 0.25
+  play music "audio/A day in the unknown.ogg"
   jump menu0
 
 label menu111bouton:
@@ -1196,6 +1135,7 @@ label menu111bouton:
         window hide
         show text"{color=#ffffff}DELETING BACKGROUND.PNG"
         hide fond reboot
+        show black
         hide anifond
         play music "audio/Void_Seeker.ogg"
         show text"{color=#ffffff}RESET SUCCESSFUL, DO YOU WANT TO RESTART?"
@@ -1208,6 +1148,7 @@ label menu111bouton:
       "Oui capitaine...":
         show ju re_T
         I "C'est bien, tu as compris."
+        play music "audio/A day in the unknown.ogg"
         show ju splain
         jump menu0
 
@@ -1226,6 +1167,11 @@ label offlinedialogue:
   p "Je crois que j'ai fait ce qu'il fallait."
   show ju plexe_T
   I "Qu'est ce que tu dis? Tu as supprimé ce monde !"
+  I "C'est l'équivalent de sauter par la fenêtre pour voir ce que tu trouveras derrière !"
+  show ju plexe
+  p "Mmmmh... je devrais peut-être"
+  show ju re_T
+  I "N'y penses même pas ! tu as déjà effacé ce monde !"
   show ju plexe
   p "Temporairement..."
   show ju plexe_T
@@ -1248,7 +1194,7 @@ label offlinedialogue:
   show ju plexe_T
   I "On dirait vraiment que tu avais envie de me poser ces questions..."
   show ju plexe
-  show Void_room behind ju with dissolve
+  show fond Void_room behind ju with dissolve
   show ju splain_T
   I "J'apprécie ta dédication mais si tu pouvais éviter de pousser ce monde à ses limites par le futur, ça serait bien !"
   show ju splain
@@ -1269,6 +1215,7 @@ label offlinetransition:
   window hide
   show text"{color=#ffffff}DELETING BACKGROUND.PNG"
   hide fond reboot
+  show black
   hide anifond
   play music "audio/Void_Seeker.ogg"
   show text"{color=#ffffff}RESET SUCCESSFUL, DO YOU WANT TO RESTART?"
@@ -1289,8 +1236,9 @@ label offlinetransition2:
   window hide
   show text"{color=#ffffff}DELETING BACKGROUND.PNG"
   hide fond reboot fake
-   
+  show black
   hide anifond
+  stop music
   play music "audio/Void_Seeker.ogg"
   show text"{color=#ffffff}RESET SUCCESSFUL, DO YOU WANT TO RESTART?"
   menu:
@@ -1303,7 +1251,7 @@ label offlinetransition2:
       show ju plexe_T
       I "AAaaah... Ah ?"
       show ju plexe
-      show Void_room behind ju with dissolve
+      show fond Void_room behind ju with dissolve
       show ju plexe_T
       I "Tu as eu un sacré réflexe, [name]..."
       show ju plexe
@@ -1318,7 +1266,7 @@ label offlinetransition2:
 label offlinemenu0:
   $ off=True
   show ju splain
-  show Void_room behind ju with dissolve
+  show fond Void_room behind ju with dissolve
   show ju splain_T
   I "Allez, on est seul.e.s face à face, pose moi donc tes questions pour lesquelles tu as tant travaillé.e !"
   show ju splain
@@ -1368,6 +1316,7 @@ label offlinemenu1:
       show ju plexe
       p "Ta période corrompue ? Que s'est-il passé ?"
       show ju plexe_T
+      play music "audio/Tears of the past.ogg"
       I "Je n'étais... Pas prête à sa mort."
       show ju sad_T
       I "Je pensais qu'elle ne viendrait pas..."
@@ -1380,11 +1329,13 @@ label offlinemenu1:
       I "Oui... J'ai juste besoin d'un peu de temps..."
       show ju sad
       pause 2
-      if inconnu >= 2:
+      if complique == False:
         $ inconnu = inconnu + 1
       show ju splain
+      $ complique = True
+      play music "audio/Void_Seeker.ogg"
       jump offlinemenu1
-    "Qui est le réel antagoniste de cette histoire ?" if inconnu == 8:
+    "Qui est le réel antagoniste de cette histoire ?" if inconnu >= 8:
       show ju splain_T
       I "C'est une sacré question !"
       I "Après le peu qu'on a traversé ici et la quantité que tu verras plus loin, la question est legit compliquée à répondre."
@@ -1401,11 +1352,12 @@ label offlinemenu1:
       show ju splain
       p "Déjà ? Mais qu'est ce que je peux faire maintenant ?"
       show ju splain_T
-      I "Pour l'instant pas grand chose, les portails sont encore fermés..."
+      I "De ce que j'ai pu entendre, il y aurait deux-trois trucs qui ont commencé à changer"
       I "J'imagine que tu peux encore faire un tour pour observer les allentours si tu n'a pas eu le temps de tout voir !"
       I "Et si tu veux partir, j'imagine que je te reverrais la prochaine fois !"
       show ju splain
-      $ inconnu = inconnu + 1
+      if inconnu == 8:
+       $ inconnu = inconnu + 1
       $ Inconnu = True
       show text _("{color=#ffffff} Fin de l'Inconnu.e") with dissolve
       $ Achievement.add(achievement_name['Inconnu'])
@@ -1438,7 +1390,8 @@ label blackexit:
   hide text
   show anifond with dissolve
   show fond ecole
-  hide Void_room with dissolve   
+  hide fond Void_room with dissolve   
+  play music "audio/A day in the unknown.ogg"
   show ju splain_T
   I "Bon, passons à autre chose !"
   show ju splain
@@ -1494,7 +1447,7 @@ label offlinemenu11:
        hide chaine
        show ju splain
        jump offlinemenu11
-   "L'accord OFAC - conseil" if conseil == 1 :
+   "L'accord OFAC - conseil" if conseil == 1 and inconnu == 1:
      show ju plexe_T
      I "Tu es prêt.e à tout pour me mettre dans tous mes états, hein ?"
      show ju plexe
@@ -1511,14 +1464,16 @@ label offlinemenu11:
      I "C'est un réseau totalement factieux de gens peu scrupuleux fondé en 1930 à Appaos à la suite des évènements de l'affaire Pacrel dans les locaux de leur ancienne structure."
      show ju plexe
      p "C'est moi ou ça sent le maxi complotisme, cette histoire ?"
-     show ju plexe_TY
+     show ju plexe_T
      I "C'est vraiment pas toi pour le coup, cette association est totalement complotiste."
      I "Et vu que mes mondes sont très paranormaux, il y avait toute les chances pour qu'ils surgissent."
      I "Ils pensent que je suis leur ennemi principal et ils ont donc réussi, d'une manière ou d'une autre malgré leur totale incompétence, à contacter mes supérieurs."
      I "Ils ne savent juste pas encore qu'ils ne seront que des pions et qu'ils finiront par être jetés."
      I "Ni même que la cause de tout ces désordres a déjà pactisée avec le Conseil, contre moi."
+     p "\{Contre elle ? je devrais peut-être lui demander pourquoi ici avant de continuer dans les hierarchies\}"
      show ju splain
-     $ inconnu = inconnu + 1
+     if inconnu == 1:
+       $ inconnu = inconnu + 1
      jump offlinemenu11
    "Les Administrateurices et Modérateurices":
      show ju re_T
@@ -1557,7 +1512,7 @@ label offlinemenu11:
      show ju fear
      $ puni=True
      jump offlinemenu11
-   "Les Créateurices OOB" if oob:
+   "Les Créateurices OOB" if oob and inconnu >=4:
      show ju splain_T
      I "Nous voici à la fin de nos affaires !"
      I "Les Créateurices OOB ou Créateurices Out Of Bound sont les Créateurices Exilées du système."
@@ -1566,7 +1521,7 @@ label offlinemenu11:
      I "Et iels sont également assez fréquemment passé par la case sanction ou corruption, ces évènements menant à de grands gains de puissances instables."
      I "À part ça, même si j'en ai fait partie, je ne suis plus vraiment dans ces cases."
      show ju splain
-     if inconnu <= 4:
+     if inconnu == 4:
        $ inconnu = inconnu + 1
      jump offlinemenu11
    "Les Créateurices Sanctionné.es" if puni and inconnu >= 3:
@@ -1590,6 +1545,8 @@ label offlinemenu11:
      I "Mais il y a pire que tout ça... Les créateurices corrompu.es."
      show ju splain
      $ corrupt = True
+     if inconnu == 3:
+       $ inconnu = inconnu + 1
      jump offlinemenu11
    "Les Créateurices corrompu.es" if corrupt:
      p "Je n'ai pas vu ça dans la pyramide que tu m'as montré pourtant."
@@ -1748,12 +1705,16 @@ label offlinemenu113:
       I "POURQUOIIIIIIIIII ?! POURQUOI ES-TU SI INSUPPORTABLE ?!"
       $ Achievement.add(achievement_name['Jubreakdownadmin'])
       show ju sad
+      play music "audio/Tears of the past.ogg"
       pause (1)
       show ju sad_T
       I "Je... Je..."
+      pause 1
       I "J'imagine que tu a fini.e par trouver... Par toi même..."
       show ju sad
       $ conseil = 1
+      pause 2
+      play music "audio/Void_Seeker.ogg"
       jump offlinemenu11
 
 label timeskip:
@@ -1852,114 +1813,197 @@ label menu2:
    I "Mmmmh..."
    show ju plexe
    jump menu0
+ elif codeg == "PZHXJGVFS":
+   $ joaearly = True
+   "partie La Joie de Vivre déverouillée"
+   jump menu0
  else:
    show ju splain_T
    I "Jamais entendu parlé."
    show ju splain
    jump menu0
 
-label menu_game:
- hide screen mainUI
- show ju splain_T
- I "J'ai plusieurs trucs à te proposer. Tu préfèrerais plutôt quoi?"
- show ju splain
- menu: 
-     "0 - Tutoriel":
-         show ju splain_T
-         I "On commence en synchro avec les base. Pour moi dans la téléportation, pour toi dans ce monde."
-         I "Accroche toi, je t'y envoie !"
-         show ju splain
-         show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-         pause 1
-         "Erreur systeme : Fichier introuvable"
-         show ju plexe_T
-         I "Ah..."
-         I "On dirait bien que ça ne fonctionne pas pour l'instant..."
-         I "Désolé pour le dérangement, je chercherais une solution à tout ça"
-         show ju splain
-         jump menu_game
-     "1 - Classique":
-         show ju splain_T
-         I "L'histoire normale. C'est vrai que la plupart du temps ça suffit amplement !"
-         I "Accroche toi, je t'y envoie !"
-         show ju splain
-         show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-         pause 1
-         jump menu_classique
-     "2 - RPG":
-         show ju splain_T
-         I "Stylé, très bon choix. J'aurais fait le même à ta place. "
-         I "Accroche toi, je t'y envoie !"
-         show ju splain
-         show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-         pause 1
-         "Erreur systeme : Fichier introuvable"
-         show ju plexe_T
-         I "Ah..."
-         I "On dirait bien que ça ne fonctionne pas pour l'instant..."
-         I "Désolé pour le dérangement, je chercherais une solution à tout ça"
-         show ju splain
-         jump menu_game
-     "3 - Romance AU":
-         show ju plexe_T
-         I "Je... Pourquoi? Je l'avais mis là mais c'était pour blaguer..."
-         I "J'imagine que si c'est vraiment ton choix, tu ferais  mieux de t'accrocher. Je sais pas ce que tu vais y voir..."
-         show ju plexe
-         show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-         pause 1
-         jump menu_romance
-     "4 - Tribunal AU":
-         show ju plexe_T
-         I "Hein? C'est quoi ces histoires?"
-         I "Bon bah accroche toi. Je sais pas ce que c'est mais je vais essayer de t'y envoyer."
-         show ju plexe
-         show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-         pause 1
-         "Erreur systeme : Fichier introuvable"
-         show ju plexe_T
-         I "Ah..."
-         I "On dirait bien que ça ne fonctionne pas pour l'instant..."
-         I "Désolé pour le dérangement, je chercherais une solution à tout ça"
-         show ju splain
-         jump menu_game
-     "World":
-       show ju splain_T
-       I "Tu veux aller faire un tour ? très bien ! "
-       I "Accroche toi, je t'y envoie !"
-       show ju splain
-       show fond ecole at Shake((0, 0, 0, 0), 5.0, dist=20) 
-       jump world
-     "Retour":
-         show ju plexe_T
-         I "Ah très bien, si tu le veux vraiment..."
-         show ju splain
-         jump menu0
+label aventure:
+  scene
+  show image "Miclordes/Miclordes.jpg"
+  show Miclordes
+  play music "audio/Miclordes.ogg"
+  hide screen mainUI
+  hide screen inventory
+  pause 2
+  if persistent.av :
+    show Miclordes H_T
+    Miclordes "Rebonjour et rebonsoir, [name] !"
+    Miclordes "Besoin d'un rappel sur ta mission ?"
+    show Miclordes H
+    menu : 
+      "J'ai besoin d'un rappel.":
+        show Miclordes H_T
+        Miclordes "Bon bah pars pour un petit récap' !"
+        Miclordes "Tu dois trouver et rassembler les histoires en réparant ce que tu vois brisé, autant en vrai qu'en versions alternatives."
+        Miclordes 'Ton toi du futur m\'a demandé de te dire "Si tu te retrouve bloqué, trouve un moyen de passer entre les lignes et tu pourrais y trouver des routes alternatives."'
+        Miclordes "Bonne visite à travers les univers ! J'espère que tu trouvera ce que tu veux et doit trouver !"
+        show Miclordes
+        $ persistent.av = True
+        show screen aventure
+        pause 2
+        hide Miclordes
+        hide image "Miclordes/Miclordes.jpg"
+        $ ui.interact()
+      "C'est tout bon !":
+        show Miclordes H_T
+        Miclordes "Ok !"
+        show Miclordes
+        show screen aventure
+        pause 2
+        hide Miclordes
+        hide image "Miclordes/Miclordes.jpg"
+        $ ui.interact()
+  else:
+    show Miclordes T
+    HUH "Bonjour, [name]."
+    HUH "Tu sembles égaré mais également savoir où tu compte aller."
+    show Miclordes
+    p "Hein ? Qui êtes-vous ? Où suis-je ?"
+    p "Comment connaissez-vous mon nom ?"
+    show Miclordes T
+    HUH "Je sais bien plus que ton nom, [name]."
+    HUH "Je suis Miclordes, l'une des trois bras droit de l'Inconnue et la première Illustratrice."
+    Miclordes "Je maitrise les déplacements dans le temps et l'espace, ce qui fait que je serais ton guide dans cet univers pour remplir ta mission."
+    Miclordes "Nous sommes en ce moment même en train de voyager à grande vitesse à travers l'espace-temps."
+    show Miclordes
+    p "Comment ça ? Quelle mission ?"
+    show Miclordes H_T
+    Miclordes "Décidément, tu en poses des questions !"
+    Miclordes "Tu me ferais presque penser à Ilona !"
+    show Miclordes H
+    p "Ilo-qui ?"
+    show Miclordes T
+    Miclordes "Attends au moins que je te réponde à ta question précédente avant de l'en poser une autre..."
+    show Miclordes
+    p "Désolé.e..."
+    show Miclordes T
+    Miclordes "Tu es l'ar... Peut-être que je devrais pas te le dire tout de suite."
+    Miclordes "Tu es quelqu'un de spécial, [name]."
+    Miclordes "ta mission ici est de rassembler tous les souvenirs et toutes les histoires afin de les réparer et d'en tirer quelque chose."
+    show Miclordes
+    p "Quelque chose ? Quel quelque chose ?"
+    show Miclordes T
+    Miclordes "Je ne peux pas le savoir, tu ne me l'as jamais dit."
+    Miclordes "Mais l'un des futurs toi m'a dit de te dire quelque chose."
+    Miclordes '"Si tu te retrouve bloqué, trouve un moyen de passer entre les lignes et tu pourrais y trouver des routes alternatives."'
+    Miclordes "C'est rien d'incroyable mais bon, j'imagine que ça pourraît peut-être t'être utile."
+    show Miclordes H_T
+    Miclordes "Bonne visite à travers les univers ! J'espère que tu trouvera ce que tu veux et doit trouver !"
+    show Miclordes
+    $ persistent.av = True
+    show screen aventure
+    pause 2
+    hide Miclordes
+    hide image "Miclordes/Miclordes.jpg"
+    $ ui.interact()
 
-label menu_classique:
-  menu : #à remplacer plus tard par une vraie interface
-    "Pacrel":
-      jump menu_P
-    "LaJoieDeVivre":
-      jump menu_JDV
-    "retour" :
-      jump menu_game 
+label prologue_pacrel:
+  hide screen pacrel
+  show pacrel_nuit
+  "Julien Pacrel est une âme errante de son monde."
+  "Orphelin tôt dans son enfance à la suite d'un accident tragique, il fût contraint à vivre dans les ombres de la capitale d'Istelle, Appaos."
+  "Survivant au jour le jour, squattant les bâtiments abandonnés, il est coincé dans un état d'apathie à se morfondre pour des évènements qu'il ne pourrait pas contrôler."
+  "Il a échappé de peu à la grande guerre mais les tensions montent à nouveau désormais en 1925, ou du moins c'est ce que disent les journaux jetés par terre."
+  "Lui comme les autres orphelins de la ville ont été abandonné.es et repoussé.es, jugé.es comme nuisibles et comme profiteurices du système."
+  "Julien Pacrel ne comprend cependant pas vraiment ces critiques, d'autant plus que ces derniers ont désormais choisi un chemin de 'repentance' envers eux."
+  "Dans la naissance de l'animation, iels se sont tous associé.es et organisé.es afin de former les studios sweep et de montrer de quoi iels sont réellement capables."
+  "Iels utiliseront alors des locaux abandonnés de l'organisme de renseignement national, isolé par des grillages dans un quartier relativement peu fréquenté."
+  "Ces derniers leur furent empruntés car considéré trop dangereux pour les riverains en l'échange d'une dette colossale qui leur sera demandée pour 1930 au plus tard."
+  "Julien Pacrel est une âme promise à la mort depuis sa naissance mais sa détermination de survivre pour les autres pourrait bien le rendre immortel"
+  $ Achievement.add(achievement_name['pacrel'])
+  $ persistent.p0 = True
+  show screen pacrel
+  hide pacrel_nuit
+  $ ui.interact()
+  
+label Ch1_pacrel:
+ hide screen pacrel
 
-label menu_P :
-  menu : #à remplacer plus tard par une vraie interface
-    "Prologue":
-      "à compléter"
-    "Chapitre 1":
-      "à compléter"
+label prologue_LJDV:
+ hide screen LJDV
+ show fondcafecreaB
+ show fondcafecreaF
+ "Créa, aka Joie, aka LaJoieDeVivre, est une Créatrice confirmée."
+ "Tout comme ses paires, elle possède son monde dans lequel elle édicte ses règles."
+ "Cependant, en opposition à ses paires, elle a tendance à voyager de dimension en dimension telle une exploratrice, à la recherche des trésors immatériels de ces univers."
+ "Ses personnages étant attachés, métaphoriquement et littéralement, à elle, iels se retrouvent régulièrement à des endroits où iels ne devraient pas être."
+ "Son sens de l'orientation, tout au moins questionnable, la mène souvent à se perdre dans des recoins d'univers qu'elle n'avait semblablement pas l'intention d'explorer."
+ show joa R_T with dissolve
+ LJDV "Hé ! Tu sais que je t'entends ?!"
+ show joa R
+ "Elle finit ainsi relativement fréquemment dans des situations compromettantes dans lesquelles elle essaye de paraître au plus hors de contrôle et d'appâter le danger loin des personnages pour annihiler le problème en bonne et due forme sans casser la \"magie\" des univers qu'elle parcourt."
+ "Son arme principale est le feu orangé, duquel elle fait transitionner les composés pour créer avec les cendres du passé."
+ "LaJoieDeVivre est une Créatrice hors paire, capable de voir le beau dans chaque chose et d'en faire quelque chose d'exceptionnel."
+ hide joa with dissolve
+ show screen LJDV
+ hide joa_prologue
+ $ ui.interact()
 
-label menu_romance:
-  menu : #à remplacer plus tard par une vraie interface
-    "Prologue":
-      "à compléter"
-    "Jour 1 : L'heure de la rentrée":
-      "à compléter"
-    "Edmes":
-      "à compléter"
-    
+label Ch1_LJDV:
+  hide screen LJDV
+  show fondcafecreaB
+  show fondcafecreaF
+  "31/12/2034 - 10h00 \n Café de la Cité des Créateurices"
+  "Quelque chose de terrible va se passer aujourd'hui. Personne ici ne le sait encore. La chute va être brutale."
+  "H-13 avant la fin du monde."
+  show joassis W behind fondcafecreaF with dissolve at left
+  pause 0.5
+  show joassis behind fondcafecreaF with dissolve at left
+  LJDV "\{Il fait définitivement pas aussi froid qu'iels l'avaient annoncé aujourd'hui. On se croirait plus en mai qu'à la veille du nouvel an.\}"
+  LJDV "\{Après, je vais pas me plaindre. J'ai juste à discuter un peu avec Ajai de ce qu'il s'est passé cette année.\}"
+  LJDV "\{C'est bizarre, il est toujours là en avance d'habitude. Cette journée s'annonce vraiment étrange\}"
+  show ajaiassis W behind fondcafecreaF with dissolve at right
+  pause 0.5
+  show ajaiassis behind fondcafecreaF with dissolve at right
+  show ajaiassis T behind fondcafecreaF at right
+  Ajai "Désolé du retard, j'ai eu un petit contretemps."
+  show joassis T behind fondcafecreaF at left
+  show ajaiassis behind fondcafecreaF at right
+  LJDV "Ma foi si c'est qu'une fois par année !"
+  show joassis behind fondcafecreaF at left
+  show ajaiassis T behind fondcafecreaF at right
+  Ajai "On se voit qu'une fois par année d'habitude..."
+  show joassis T behind fondcafecreaF at left
+  show ajaiassis behind fondcafecreaF at right
+  LJDV "Des détails, tout ça !"
+  LJDV "Comment ça va depuis l'année dernière ?"
+  show joassis behind fondcafecreaF at left
+  show ajaiassis T behind fondcafecreaF at right
+  Ajai "C'est un peu le bazar comme d'habitude, à tel point que je vois plus passer les jours."
+  show joassis T behind fondcafecreaF at left
+  show ajaiassis behind fondcafecreaF at right
+  LJDV "Ah bah ne m'en parle même pas !"
+  show joassis behind fondcafecreaF at left
+  show ajaiassis T behind fondcafecreaF at right
+  Ajai "Il s'est passé quoi de ton côté ?"
+  show ajaiassis behind fondcafecreaF at left
+  hide joassis
+  hide ajaiassis
+  show joa C_T
+  LJDV "Eh ben, il y a quelques heures, Samwy est rentré. Je l'avais plus revu depuis plusieurs années et, apparemment, je l'avais oublié dans l'univers de Julien."
+  LJDV "Le pauvre était tellement perdu qu'il commençait à halluciner en pensant qu'il était en 2012 et que les murs pouvaient s'ouvrir !"
+  show joa c
+  Ajai "Tu l'as oublié depuis 2012 ?!"
+  show joa P_T 
+  LJDV "Peut-être bien mais au moins il est encore vivant, non ?"
+  show joa p
+  Ajai "Si tu continue à faire n'importe quoi et tu risqueras de te brûler, le Conseil avait pas apprécié l'échec de Julien."
+  show joa R
+  Ajai "Whoa ! Calme toi !"
+  show joa R_T
+  LJDV "Tu sais très bien qu'il ne méritait pas ce qui lui est arrivé, et les autres non plus."
+  show joa R
+  Ajai "On a tenté ce qu'on pouvait à l'époque."
+  show screen LJDV
+  $ ui.interact()
+
+
 label finreset:
  show text"{color=#ffffff}VERY WELL"
  pause(2)
@@ -1971,6 +2015,7 @@ label finreset:
  return
 
 label finwhite:
+  stop music
   hide screen to_inverted
   window show
   p "{color=#ffffff}Non ! Pas si tôt !"
@@ -1981,17 +2026,18 @@ label finwhite:
   return
 
 label finEdmes:
+  stop music
   hide fond reboot fake
   hide animfond
   show Edmes closeup
   Edmes "Tu pensais vraiment que je te laisserais partir ?"
-  hide Edmes closeup with dissolve
   show text _("{color=#ffffff} Fin Tué dans l'Oeuf") with dissolve
   $ Achievement.add(achievement_name['tuedansloeuf'])
   pause 3.0
   return
 
 label finrhinoceros:
+  stop music
   show YOU
   I "Oh mais je vous connais !"
   I "Je vous savais Autoritaire mais je ne pensais pas que vous seriez si idiot."
