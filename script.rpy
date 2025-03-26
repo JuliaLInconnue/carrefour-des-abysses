@@ -2017,9 +2017,10 @@ label Ch1_LJDV:
         show joa R
         Administrateur "Vous me flattez."
         show joa P_T
-        LJDV "Ah... Bonjour monsieur l'agent. Comment allez-vous ?
+        LJDV "Ah... Bonjour monsieur l'agent. Comment allez-vous ?"
         jump go_prison LJDV
-      
+      "Revenir sur mon monde":
+
 
   show screen LJDV
   $ ui.interact()
