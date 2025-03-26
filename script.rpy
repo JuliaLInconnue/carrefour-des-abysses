@@ -1999,7 +1999,28 @@ label Ch1_LJDV:
   show joa R_T
   LJDV "Tu sais très bien qu'il ne méritait pas ce qui lui est arrivé, et les autres non plus."
   show joa R
-  Ajai "On a tenté ce qu'on pouvait à l'époque."
+  Ajai "On a tenté ce qu'on pouvait à l'époque mais rien n'a fait."
+  Ajai "Au moins, on peut pour l'instant dire que cette sanction n'a pas l'air d'avoir d'effets sur lui. C'était peut-être juste un bon prototype."
+  show joa R_T
+  LJDV "J'en doute, certains ont tendance à prendre du temps avant de montrer leurs effets."
+  show joa R
+  menu :
+    Ajai "On devrait peut-être parler d'autre chose non ? J'ai peur que quelqu'un nous entende ici :
+      "Plutôt crever que de me censurer !":
+        show joa R_T 
+        LJDV "Tu penses que c'est ce qu'iels auraient voulu ? Qu'on les abandonnent comme ça et qu'on accepte que ce soit normal ?!
+        LJDV "C'est pas normal qu'on soit muselé comme ça ! On devrait pouvoir dire ce qui se passe sans risquer notre existence face à ces fraudes !" 
+        show joa R
+        Ajai "Stop ! On va nous entendre !"
+        show joa R_T
+        LJDV "J'en ai plus rien à foutre ! Qu'ils viennent m'arrêter si ils ont les couilles ! Les gens du Conseil sont pathétiques et ceux à leurs bottes sont stupides !"
+        show joa R
+        Administrateur "Vous me flattez."
+        show joa P_T
+        LJDV "Ah... Bonjour monsieur l'agent. Comment allez-vous ?
+        jump go_prison LJDV
+      
+
   show screen LJDV
   $ ui.interact()
 
