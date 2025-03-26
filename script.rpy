@@ -2018,13 +2018,20 @@ label Ch1_LJDV:
         Administrateur "Vous me flattez."
         show joa P_T
         LJDV "Ah... Bonjour monsieur l'agent. Comment allez-vous ?"
-        jump go_prison LJDV
+        jump prison_LJDV
       "Revenir sur mon monde":
+        "Qui êtes-vous ? Où êtes-vous ? Qu'êtes-vous ?"
+        "Vous ne le saurez sans doute jamais plus. Votre corps entier vous lâche."
+        show text _("Game Over \n Transpercé par un pic d'ombre")
+        show screen LJDV
+        hide text
+        $ ui.interact()
 
-
+label prison_LJDV:
+  show text _("Fin du chapitre 1")
   show screen LJDV
+  hide text
   $ ui.interact()
-
 
 label finreset:
  show text"{color=#ffffff}VERY WELL"
