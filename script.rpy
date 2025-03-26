@@ -2018,10 +2018,24 @@ label Ch1_LJDV:
         Administrateur "Vous me flattez."
         show joa P_T
         LJDV "Ah... Bonjour monsieur l'agent. Comment allez-vous ?"
+        show joa P
+        Administrateur "Très bien, tellement bien que je me sens d'humeur à vous faire visiter les locaux à accès restreint dans lesquels je travaille."
+        show joa C_T
+        LJDV "Vous m'en verrez flattée mais je ne puis malheureusement pas répondre à votre requête."
+        show joa C
+        Administrateur "Oh mais je ne vous laisse pas le choix. J'emmènerais également votre ami avec vous, juste au cas où."
+        show joa R_T
+        LJDV "Sous quel motif ?"
+        show joa R
+        Ajai "Pourquoi est-ce que je suis mis aussi dans le paquet ?"
+        Administrateur "Outrage à agent et complicité. Vous vous expliquerez devant le tribunal."
         jump prison_LJDV
       "Revenir sur mon monde":
+        "Votre vision se trouble de plus en plus. vos idées fusent dans tous les sens et disparaissent peu à peu. Ajai, transpercé à vos côtés, semblent devenir de plus en plus terne, bien que vous ne sachiez plus distiguer le réel du fictif."
+        "vous ne reconnaissez plus la personne à vos côtés ni comment la situation a pu autant dégénérer, bien que vous en ayez un souvenir lointain"
         "Qui êtes-vous ? Où êtes-vous ? Qu'êtes-vous ?"
         "Vous ne le saurez sans doute jamais plus. Votre corps entier vous lâche."
+        hide screen window
         show text _("Game Over \n Transpercé par un pic d'ombre")
         show screen LJDV
         hide text
