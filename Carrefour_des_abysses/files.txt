@@ -1,0 +1,412 @@
+Carrefour_des_Abysses_main.code-workspace
+Characters.rpy
+Characters.rpyc
+Variables.rpy
+Variables.rpyc
+Visuals.rpy
+Visuals.rpyc
+events.rpy
+events.rpyc
+gui.rpy
+gui.rpyc
+options.rpy
+options.rpyc
+renpy_warp_2.1.2_bfed3160.rpe.py
+screens.rpy
+screens.rpyc
+script.rpy
+script.rpyc
+script_version.txt
+.vscode\settings.json
+achievements\achievement_screen.rpy
+achievements\achievement_screen.rpyc
+achievements\achievements_function.rpy
+achievements\achievements_function.rpyc
+audio\A day in the unknown.ogg
+audio\Dissonant vision.ogg
+audio\Heartbeat.ogg
+audio\Menu.ogg
+audio\Miclordes.ogg
+audio\Old little song.ogg
+audio\Tears of the past.ogg
+audio\Void_Seeker.ogg
+audio\Weirdness ensues.ogg
+audio\beeps.ogg
+audio\see.ogg
+audio\voice1.ogg
+audio\voice2.ogg
+audio\voice3.ogg
+cache\build_info.json
+cache\bytecode-312.rpyb
+cache\bytecode-39.rpyb
+cache\py3analysis-unknown-device.rpyb
+cache\py3analysis.rpyb
+cache\screens-unknown-device.rpyb
+cache\screens.rpyb
+cache\shaders.txt
+gui\bubble.png
+gui\frame.png
+gui\game_menu.png
+gui\locked_achievement.png
+gui\main_menu_1.png
+gui\main_menu_2.png
+gui\namebox.png
+gui\notify.png
+gui\nvl.png
+gui\skip.png
+gui\textbox.png
+gui\thoughtbubble.png
+gui\trophy_icon.png
+gui\window_icon.png
+gui\bar\bottom.png
+gui\bar\left.png
+gui\bar\right.png
+gui\bar\top.png
+gui\button\check_foreground.png
+gui\button\check_selected_foreground.png
+gui\button\choice_hover_background.png
+gui\button\choice_idle_background.png
+gui\button\hover_background.png
+gui\button\idle_background.png
+gui\button\quick_hover_background.png
+gui\button\quick_idle_background.png
+gui\button\radio_foreground.png
+gui\button\radio_selected_foreground.png
+gui\button\slot_hover_background.png
+gui\button\slot_idle_background.png
+gui\overlay\confirm.png
+gui\overlay\game_menu.png
+gui\overlay\main_menu_1.png
+gui\overlay\main_menu_2.png
+gui\phone\nvl.png
+gui\phone\textbox.png
+gui\phone\bar\bottom.png
+gui\phone\bar\left.png
+gui\phone\bar\right.png
+gui\phone\bar\top.png
+gui\phone\button\check_foreground.png
+gui\phone\button\check_selected_foreground.png
+gui\phone\button\choice_hover_background.png
+gui\phone\button\choice_idle_background.png
+gui\phone\button\hover_background.png
+gui\phone\button\idle_background.png
+gui\phone\button\radio_foreground.png
+gui\phone\button\radio_selected_foreground.png
+gui\phone\button\slot_hover_background.png
+gui\phone\button\slot_idle_background.png
+gui\phone\overlay\game_menu.png
+gui\phone\overlay\main_menu.png
+gui\phone\scrollbar\horizontal_hover_bar.png
+gui\phone\scrollbar\horizontal_hover_thumb.png
+gui\phone\scrollbar\horizontal_idle_bar.png
+gui\phone\scrollbar\horizontal_idle_thumb.png
+gui\phone\scrollbar\vertical_hover_bar.png
+gui\phone\scrollbar\vertical_hover_thumb.png
+gui\phone\scrollbar\vertical_idle_bar.png
+gui\phone\scrollbar\vertical_idle_thumb.png
+gui\phone\slider\horizontal_hover_bar.png
+gui\phone\slider\horizontal_hover_thumb.png
+gui\phone\slider\horizontal_idle_bar.png
+gui\phone\slider\horizontal_idle_thumb.png
+gui\phone\slider\vertical_hover_bar.png
+gui\phone\slider\vertical_hover_thumb.png
+gui\phone\slider\vertical_idle_bar.png
+gui\phone\slider\vertical_idle_thumb.png
+gui\scrollbar\horizontal_hover_bar.png
+gui\scrollbar\horizontal_hover_thumb.png
+gui\scrollbar\horizontal_idle_bar.png
+gui\scrollbar\horizontal_idle_thumb.png
+gui\scrollbar\vertical_hover_bar.png
+gui\scrollbar\vertical_hover_thumb.png
+gui\scrollbar\vertical_idle_bar.png
+gui\scrollbar\vertical_idle_thumb.png
+gui\slider\horizontal_hover_bar.png
+gui\slider\horizontal_hover_thumb.png
+gui\slider\horizontal_idle_bar.png
+gui\slider\horizontal_idle_thumb.png
+gui\slider\vertical_hover_bar.png
+gui\slider\vertical_hover_thumb.png
+gui\slider\vertical_idle_bar.png
+gui\slider\vertical_idle_thumb.png
+images\Unfinished.png
+images\chr\Agent_Conseil.png
+images\chr\default_chr.png
+images\chr\ajai\Ajai_fear.png
+images\chr\ajai\Ajai_fear_T.png
+images\chr\ajai\Ajai_think.png
+images\chr\ajai\Ajai_think_T.png
+images\chr\ajai\ajaiassis.png
+images\chr\ajai\ajaiassis_T.png
+images\chr\ajai\ajaiassis_w.png
+images\chr\Charasime\Charasime 1.png
+images\chr\Charasime\Charasime 10.png
+images\chr\Charasime\Charasime 11.png
+images\chr\Charasime\Charasime 12.png
+images\chr\Charasime\Charasime 13.png
+images\chr\Charasime\Charasime 14.png
+images\chr\Charasime\Charasime 15.png
+images\chr\Charasime\Charasime 16.png
+images\chr\Charasime\Charasime 17.png
+images\chr\Charasime\Charasime 18.png
+images\chr\Charasime\Charasime 19.png
+images\chr\Charasime\Charasime 2.png
+images\chr\Charasime\Charasime 20.png
+images\chr\Charasime\Charasime 21.png
+images\chr\Charasime\Charasime 22.png
+images\chr\Charasime\Charasime 23.png
+images\chr\Charasime\Charasime 24.png
+images\chr\Charasime\Charasime 25.png
+images\chr\Charasime\Charasime 26.png
+images\chr\Charasime\Charasime 27.png
+images\chr\Charasime\Charasime 28.png
+images\chr\Charasime\Charasime 29.png
+images\chr\Charasime\Charasime 3.png
+images\chr\Charasime\Charasime 30.png
+images\chr\Charasime\Charasime 31.png
+images\chr\Charasime\Charasime 32.png
+images\chr\Charasime\Charasime 33.png
+images\chr\Charasime\Charasime 34.png
+images\chr\Charasime\Charasime 35.png
+images\chr\Charasime\Charasime 36.png
+images\chr\Charasime\Charasime 37.png
+images\chr\Charasime\Charasime 38.png
+images\chr\Charasime\Charasime 39.png
+images\chr\Charasime\Charasime 4.png
+images\chr\Charasime\Charasime 40.png
+images\chr\Charasime\Charasime 41.png
+images\chr\Charasime\Charasime 42.png
+images\chr\Charasime\Charasime 5.png
+images\chr\Charasime\Charasime 6.png
+images\chr\Charasime\Charasime 7.png
+images\chr\Charasime\Charasime 8.png
+images\chr\Charasime\Charasime 9.png
+images\chr\joa\Joa_spike.webm
+images\chr\joa\joa assu.png
+images\chr\joa\joa assu_T.png
+images\chr\joa\joa avoid.png
+images\chr\joa\joa avoid_T.png
+images\chr\joa\joa fear.png
+images\chr\joa\joa fear_T.png
+images\chr\joa\joa rage.png
+images\chr\joa\joa rage_T.png
+images\chr\joa\joassis.png
+images\chr\joa\joassis_T.png
+images\chr\joa\joassis_w.png
+images\chr\Juposteur\juposteur joie crame.png
+images\chr\Juposteur\juposteur joie.png
+images\chr\klarsen\Klarsen_fiere.png
+images\chr\klarsen\Klarsen_fiere_D.png
+images\chr\klarsen\Klarsen_fiere_D_T.png
+images\chr\klarsen\Klarsen_fiere_T.png
+images\chr\Miclordes\Miclordes.jpg
+images\chr\Miclordes\Miclordes.webm
+images\chr\Miclordes\Miclordes_H.webm
+images\chr\Miclordes\Miclordes_H_T.webm
+images\chr\Miclordes\Miclordes_T.webm
+images\chr\unknown\XY_splain.png
+images\chr\unknown\XY_splain_T.png
+images\chr\unknown\fear.png
+images\chr\unknown\fear_T.png
+images\chr\unknown\fear_T_halloween.png
+images\chr\unknown\fear_halloween.png
+images\chr\unknown\juink.png
+images\chr\unknown\juink_T.png
+images\chr\unknown\juink_T_halloween.png
+images\chr\unknown\juink_halloween.png
+images\chr\unknown\juplexe.png
+images\chr\unknown\juplexe_C.png
+images\chr\unknown\juplexe_C2.png
+images\chr\unknown\juplexe_T.png
+images\chr\unknown\juplexe_T_halloween.png
+images\chr\unknown\juplexe_halloween.png
+images\chr\unknown\jure.png
+images\chr\unknown\jure_T.png
+images\chr\unknown\jure_T_halloween.png
+images\chr\unknown\jure_halloween.png
+images\chr\unknown\jusad.png
+images\chr\unknown\jusad_T.png
+images\chr\unknown\jusad_T_halloween.png
+images\chr\unknown\jusad_halloween.png
+images\chr\unknown\jusplain.png
+images\chr\unknown\jusplain_T.png
+images\chr\unknown\jusplain_T_halloween.png
+images\chr\unknown\jusplain_halloween.png
+images\chr\unknown\juwu.png
+images\chr\unknown\juwu_T.png
+images\chr\unknown\juwu_T_halloween.png
+images\chr\unknown\juwu_halloween.png
+images\chr\Z\Z_penche.png
+images\chr\Z\Z_penche_T.png
+images\Decor\photo\Pic_ombre_ch1joa.png
+images\Decor\photo\Void_room.png
+images\Decor\photo\cafe_crea_B.png
+images\Decor\photo\cafe_crea_B_N.png
+images\Decor\photo\cafe_crea_F.png
+images\Decor\photo\capedmes.png
+images\Decor\photo\fond ecole fake.png
+images\Decor\photo\fond hdi 3.1.png
+images\Decor\photo\fond hdi 3.1_halloween.png
+images\Decor\photo\fond prison barre.png
+images\Decor\photo\fond prison.png
+images\Decor\photo\fond reboot fake.png
+images\Decor\photo\fonddroite.png
+images\Decor\photo\fonddroite2.png
+images\Decor\photo\fonddroite_halloween.png
+images\Decor\photo\fondgauche.png
+images\Decor\photo\fondgauche_halloween.png
+images\Decor\photo\fondreboot.png
+images\Decor\photo\fondreboot_halloween.png
+images\Decor\photo\fondtranscendental.png
+images\Decor\photo\gopic_ljdv_1.png
+images\Decor\photo\gopic_ljdv_2.png
+images\Decor\photo\pacrel_nuit.png
+images\Decor\photo\projecteur1.png
+images\Decor\photo\prologue powart.png
+images\Decor\photo\train_ext.png
+images\Decor\photo\train_int.png
+images\Decor\video\Fond_trans.webm
+images\Decor\video\fondanim.webm
+images\Decor\video\Projecteur\projecteur2.webm
+images\Fichier source\buff vap.png
+images\jumpscare\Edmes closeup.png
+images\jumpscare\I_Know.jpg
+images\jumpscare\YOU.jpg
+images\UI\BAU.png
+images\UI\Inventaire.png
+images\UI\Logo2.png
+images\UI\Logo2_halloween.png
+images\UI\Rapport OFAC 105 hover.png
+images\UI\Rapport OFAC 105 idle.png
+images\UI\Rapport_OFAC.png
+images\UI\TS_Logo.png
+images\UI\Trilogie Histoire Multiple hover.png
+images\UI\Trilogie Histoire Multiple idle.png
+images\UI\aventure hover.png
+images\UI\aventure idle.png
+images\UI\back hover.png
+images\UI\back idle.png
+images\UI\cadenas.png
+images\UI\chaine.png
+images\UI\code hover.png
+images\UI\code idle.png
+images\UI\code.png
+images\UI\direction hover.png
+images\UI\direction idle.png
+images\UI\discuter hover.png
+images\UI\discuter idle.png
+images\UI\exit hover.png
+images\UI\exit idle.png
+images\UI\explorer hover.png
+images\UI\explorer idle.png
+images\UI\inventory hover.png
+images\UI\inventory idle.png
+images\UI\l'inconnue pdp.png
+images\UI\logo.png
+images\UI\logo_2.png
+images\UI\logomin.png
+images\UI\none.png
+images\UI\orga_crea.png
+images\UI\presplash.png
+images\UI\presplash_halloween.png
+images\UI\Aventure\AP.png
+images\UI\Aventure\HP.png
+images\UI\Aventure\LJDV hover.png
+images\UI\Aventure\LJDV idle.png
+images\UI\Aventure\Null hover.png
+images\UI\Aventure\Null idle.png
+images\UI\Aventure\P hover.png
+images\UI\Aventure\P idle.png
+images\UI\Aventure\Powart hover.png
+images\UI\Aventure\Powart idle.png
+images\UI\Aventure\RPG hover.png
+images\UI\Aventure\RPG idle.png
+images\UI\Aventure\aventureprincipale hover.png
+images\UI\Aventure\aventureprincipale idle.png
+images\UI\Aventure\fond_LJDV.png
+images\UI\Aventure\fond_Powart.png
+images\UI\Aventure\fond_pacrel.png
+images\UI\Aventure\porte1 hover.png
+images\UI\Aventure\porte1 idle.png
+images\UI\Aventure\porte2 hover.png
+images\UI\Aventure\porte2 idle.png
+images\UI\Aventure\romance hover.png
+images\UI\Aventure\romance idle.png
+images\UI\Aventure\tribunal hover.png
+images\UI\Aventure\tribunal idle.png
+images\UI\Aventure\world hover.png
+images\UI\Aventure\world idle.png
+images\UI\galerie\Edwin.png
+images\UI\galerie\Klarpear.png
+images\UI\galerie\cutscene.png
+images\UI\galerie\underground.png
+images\UI\Romance\Romance_intro.png
+images\UI\RPG\RPG_intro.png
+images\UI\Tribunal\Tribunal_intro.png
+images\UI\World\World_intro.png
+saves\1-1-LT1.save
+saves\1-2-LT1.save
+saves\1-4-LT1.save
+saves\1-6-LT1.save
+saves\_reload-2-LT1.save
+saves\_tracesave-1-LT1.save
+saves\_tracesave-10-LT1.save
+saves\_tracesave-2-LT1.save
+saves\_tracesave-3-LT1.save
+saves\_tracesave-4-LT1.save
+saves\_tracesave-5-LT1.save
+saves\_tracesave-6-LT1.save
+saves\_tracesave-7-LT1.save
+saves\_tracesave-8-LT1.save
+saves\auto-1-LT1.save
+saves\auto-10-LT1.save
+saves\auto-2-LT1.save
+saves\auto-3-LT1.save
+saves\auto-4-LT1.save
+saves\auto-5-LT1.save
+saves\auto-6-LT1.save
+saves\auto-7-LT1.save
+saves\auto-8-LT1.save
+saves\auto-9-LT1.save
+saves\navigation-unknown-device-2.json
+saves\navigation-unknown-device.json
+saves\navigation.json
+saves\persistent
+saves\persistent-unknown-device
+tl\english\Characters.rpy
+tl\english\Characters.rpyc
+tl\english\common.rpy
+tl\english\common.rpyc
+tl\english\options.rpy
+tl\english\options.rpyc
+tl\english\screens.rpy
+tl\english\screens.rpyc
+tl\english\script.rpy
+tl\english\script.rpyc
+tl\english\achievements\achievement_screen.rpy
+tl\english\achievements\achievement_screen.rpyc
+tl\english\achievements\achievements_function.rpy
+tl\english\achievements\achievements_function.rpyc
+tl\english\images\UI\Inventaire.png
+tl\english\images\UI\aventure hover.png
+tl\english\images\UI\aventure idle.png
+tl\english\images\UI\discuter hover.png
+tl\english\images\UI\discuter idle.png
+tl\english\images\UI\exit hover.png
+tl\english\images\UI\exit idle.png
+tl\english\images\UI\explorer hover.png
+tl\english\images\UI\explorer idle.png
+tl\english\images\UI\inventory hover.png
+tl\english\images\UI\inventory idle.png
+tl\english\images\UI\main_UI.png
+tl\english\images\UI\other_UI.png
+tl\english\images\UI\Aventure\aventureprincipale hover.png
+tl\english\images\UI\Aventure\aventureprincipale idle.png
+tl\english\images\UI\Aventure\porte1 hover.png
+tl\english\images\UI\Aventure\porte1 idle.png
+tl\english\images\UI\Aventure\porte2 hover.png
+tl\english\images\UI\Aventure\porte2 idle.png
+tl\english\images\UI\galerie\Edwin.png
+tl\english\images\UI\galerie\cutscene.png
+tl\english\images\UI\galerie\underground.png
+tl\None\common.rpym
+tl\None\common.rpymc

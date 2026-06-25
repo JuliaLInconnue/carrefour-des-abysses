@@ -1,0 +1,32 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 96, in script
+    python :
+  File "game/script.rpy", line 103, in <module>
+    david +=1
+    ^^^^^    
+NameError: name 'david' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Traceback (most recent call last):
+  File "renpy/common/00start.rpy", line 259, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 96, in script
+    python :
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/script.rpy", line 103, in <module>
+    david +=1
+    ^^^^^    
+NameError: name 'david' is not defined
+
+Windows-11-10.0.26200-SP0 AMD64
+Ren'Py 8.5.0.25111603
+Carrefour_des_Abysses Alpha_1.15.1
+Fri May  1 23:09:39 2026

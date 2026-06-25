@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 91: positional argument follows keyword argument
+    renpy.show("presplash text", what = Text ("{color=#ffffff}fun"), at_list [Transform(ypos=feddyy, xpos = feddyx)], tag = "text" + str(feddytxt))
+                                                                                                                                                          ^
+
+Ren'Py Version: Ren'Py 8.5.0.25111603
+Fri May  1 22:57:27 2026

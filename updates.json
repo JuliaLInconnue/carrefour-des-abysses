@@ -1,9 +1,0 @@
-{
-  "pc": {
-    "version": "2a5370afdef40d2e0e0b8202b709f460a7c53fcd784e7bc8af8b550eae98b7e1",
-    "pretty_version": "alpha_1.5",
-    "renpy_version": "8.3.6.25022803",
-    "rpu_url": "rpu/pc.files.rpu",
-    "rpu_digest": "863b1c05f26dc65c67fe117ae6df3dc0b793d5a4477a9f7e0f08e229dadf6317"
-  }
-}
