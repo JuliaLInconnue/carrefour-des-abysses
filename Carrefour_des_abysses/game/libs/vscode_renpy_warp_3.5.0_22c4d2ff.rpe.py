@@ -8,7 +8,9 @@
 # This file should not be checked into source control. You can add it to your
 # `.gitignore` file by adding the following line:
 #
-# renpy_warp_*.rpe*
+# vscode_renpy_warp_*.rpe*
+#
+# For more information, see https://github.com/furudean/vscode-renpy-warp
 #
 
 import renpy  # type: ignore
@@ -32,9 +34,17 @@ except ValueError:
     logger.setLevel(level=logging.INFO)
 
 
+class RenpyWarpQuitAction(renpy.ui.Action):
+    def __call__(self):
+        renpy.exports.quit()
+
+
+original_quit_action = renpy.config.quit_action
+
+
 def get_meta():
     RPE_FILE_PATTERN = re.compile(
-        r"renpy_warp_(?P<version>\d+\.\d+\.\d+)(?:_(?P<checksum>[a-z0-9]+))?\.rpe(?:\.py)?")
+        r"(?:vscode_)?renpy_warp_(?P<version>\d+\.\d+\.\d+)(?:_(?P<checksum>[a-z0-9]+))?\.rpe(?:\.py)?")
 
     file = Path(__file__) if __file__.endswith(
         '.rpe.py') else Path(__file__).parent
@@ -52,7 +62,7 @@ def get_meta():
     return d["version"], d["checksum"]
 
 
-def py_exec(text: str):
+def py_exec(text):
     while renpy.exports.is_init_phase():
         logger.debug("in init phase, waiting...")
         sleep(0.2)
@@ -178,13 +188,14 @@ def socket_service(port, version, checksum):
         ) as websocket:
             quitting = False
 
-            def quit():
+            def renpy_warp_quit_callback():
                 nonlocal quitting
                 quitting = True
                 logger.info(f"closing websocket connection :{port}")
                 websocket.close(4000, 'renpy quit')
 
-            renpy.config.quit_callbacks.append(quit)
+            renpy.config.quit_callbacks.append(renpy_warp_quit_callback)
+            renpy.config.quit_action = RenpyWarpQuitAction()
 
             logger.info(f"connected to renpy warp socket server on :{port}")
             py_exec("renpy.notify(\"Connected to Ren'Py Launch and Sync\")")
@@ -192,6 +203,8 @@ def socket_service(port, version, checksum):
             socket_producer(websocket)
             socket_listener(websocket)  # this blocks until socket is closed
 
+            renpy.config.quit_callbacks.remove(renpy_warp_quit_callback)
+            renpy.config.quit_action = original_quit_action
             logger.info(f"socket service on :{port} exited")
 
             if not quitting:
@@ -202,7 +215,7 @@ def socket_service(port, version, checksum):
         logger.info(f"socket service on :{port} was terminated by server")
         pass
 
-    except ConnectionClosedError as e:
+    except ConnectionClosedError:
         logger.info("connection replaced, service exiting")
         return True
 

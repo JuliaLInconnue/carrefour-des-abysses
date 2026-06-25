@@ -1,4 +1,4 @@
-2026-06-25 11:02:56 UTC
+2026-06-25 16:21:06 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.3.26051504
 
@@ -6,33 +6,33 @@ Carrefour des Abysses
 alpha_1.0
 Built at 2024-10-31 16:24:40 UTC
 
-Early init took 119 ms
-Loading error handling took 95 ms
-Loading script took 584 ms
-Loading save slot metadata took 97 ms
+Early init took 94 ms
+Loading error handling took 54 ms
+Loading script took 790 ms
+Loading save slot metadata took 99 ms
 Loading persistent took 0 ms
 Set script version to: (8, 3, 2)
-Running init code took 100 ms
-Loading analysis data took 13 ms
-Analyze and compile ATL took 3 ms
-Reloading save slot metadata took 98 ms
-Dump and make backups took 68 ms
-Cleaning cache took 1 ms
-Making clean stores took 0 ms
-Initial gc took 40 ms
+Running init code took 139 ms
+Loading analysis data took 9 ms
+Analyze and compile ATL took 5 ms
+Reloading save slot metadata took 85 ms
+Dump and make backups took 332 ms
+Cleaning cache took 0 ms
+Making clean stores took 1 ms
+Initial gc took 83 ms
 DPI scale factor: 1.250000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 8 ms
-Init translation took 0 ms
-Cleaning stores took 1 ms
-Load screen analysis took 4 ms
-Analyze screens took 22 ms
-Save screen analysis took 22 ms
-Save pyanalysis took 12 ms
-Save bytecode took 54 ms
+Creating interface object took 17 ms
+Init translation took 1 ms
+Cleaning stores took 0 ms
+Load screen analysis took 2 ms
+Analyze screens took 20 ms
+Save screen analysis took 48 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms
 Running _start took 1 ms
-Interface start took 1010 ms
+Interface start took 1135 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1080)
@@ -45,3 +45,4 @@ Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 25
 Screen sizes: virtual=(1920, 1080) physical=(958, 539) drawable=(958, 539)
 Maximum texture size: 4096x4096
 INFO:renpy_warp_service:service thread started. periodically scanning ports for warp server
+INFO:renpy_warp_service:connected to renpy warp socket server on :40111
